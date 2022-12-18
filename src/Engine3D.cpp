@@ -1,24 +1,10 @@
 #define OLC_PGE_APPLICATION
 #include "olcPixelGameEngine.h"
-
-struct vec3d
-{
-    float x, y, z;
-};
-
-struct triangle
-{
-    vec3d p[3];
-};
+#include "geom.h"
 
 struct mesh
 {
     std::vector<triangle> tris;
-};
-
-struct mat4x4
-{
-    float m[4][4] = {0};
 };
 
 class Engine3D : public olc::PixelGameEngine
@@ -137,9 +123,11 @@ public:
             }
 
             triTranslated = triRotatedZX;
-            triTranslated.p[0].z = triRotatedZX.p[0].z + 3.0f;
-            triTranslated.p[1].z = triRotatedZX.p[1].z + 3.0f;
-            triTranslated.p[2].z = triRotatedZX.p[2].z + 3.0f;
+
+            for (int i = 0; i < 3; i++)
+            {
+                triTranslated.p[i].z = triRotatedZX.p[i].z + 3.0f;
+            }
 
             for (int i = 0; i < 3; i++)
             {
