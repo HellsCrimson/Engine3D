@@ -1,11 +1,11 @@
 #define OLC_PGE_APPLICATION
 
 #include <fstream>
+#include <sstream>
 #include <algorithm>
 
-#include "olcPixelGameEngine.h"
+#include "olcConsoleGameEngineSDL.h"
 #include "geom.h"
-#include "pixel.h"
 
 struct mesh
 {
@@ -48,12 +48,12 @@ struct mesh
     }
 };
 
-class Engine3D : public olc::PixelGameEngine
+class Engine3D : public olcConsoleGameEngine
 {
 public:
     Engine3D()
     {
-        sAppName = "3D Engine";
+        m_sAppName = L"3D Engine";
     }
 
 private:
@@ -79,9 +79,10 @@ private:
         }
     }
 
-    uint32_t GetColour(float lum)
+    CHAR_INFO GetColour(float lum)
     {
-        uint32_t bg_col, fg_col;
+        short bg_col, fg_col;
+        wchar_t sym;
         int pixel_bw = (int)(13.0f * lum);
         switch (pixel_bw)
         {
@@ -142,7 +143,10 @@ private:
             fg_col = FG_BLACK;
         }
 
-        return bg_col | fg_col;
+        CHAR_INFO c;
+        c.colour = bg_col | fg_col;
+        c.glyph = PIXEL_SOLID;
+        return c;
     }
 
 public:
@@ -168,7 +172,7 @@ public:
 
     bool OnUserUpdate(float fElapsedTime) override
     {
-        Clear(olc::BLACK);
+        Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_BLACK);
 
         mat4x4 matRotZ;
         mat4x4 matRotX;
@@ -252,8 +256,9 @@ public:
                 // How similar is normal to light direction (dot product)
                 float dp = normal.x * light_direction.x + normal.y * light_direction.y + normal.z * light_direction.z;
 
-                triTranslated.col = GetColour(dp);
-                ;
+                CHAR_INFO c = GetColour(dp);
+                triTranslated.col = c.colour;
+                triTranslated.sym = c.glyph;
 
                 // Project triangles from 3D --> 2D
                 for (int i = 0; i < 3; i++)
@@ -261,6 +266,7 @@ public:
                     MultiplyMatrixVector(triTranslated.p[i], triProjected.p[i], matProj);
                 }
                 triProjected.col = triTranslated.col;
+                triProjected.sym = triTranslated.sym;
 
                 // Scale into view
                 for (int i = 0; i < 3; i++)
@@ -294,13 +300,12 @@ public:
             FillTriangle(triProjected.p[0].x, triProjected.p[0].y,
                          triProjected.p[1].x, triProjected.p[1].y,
                          triProjected.p[2].x, triProjected.p[2].y,
-                         olc::WHITE);
-            // olc::Pixel(triProjected.col, triProjected.col, triProjected.col));
+                            triProjected.sym, triProjected.col);
 
             DrawTriangle(triProjected.p[0].x, triProjected.p[0].y,
                          triProjected.p[1].x, triProjected.p[1].y,
                          triProjected.p[2].x, triProjected.p[2].y,
-                         olc::BLACK);
+                            PIXEL_SOLID, FG_BLACK);
         }
 
         return true;
@@ -310,7 +315,7 @@ public:
 int main(void)
 {
     Engine3D engine;
-    if (engine.Construct(256, 240, 4, 4))
+    if (engine.ConstructConsole(256, 240, 4, 4))
         engine.Start();
     else
         printf("Failed to start engine!\n");
