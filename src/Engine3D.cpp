@@ -741,12 +741,11 @@ int main(int argc, char **argv)
 		else if (strcmp(argv[i], "-c") == 0 || strcmp(argv[i], "-clipping") == 0)
 		{
 			showClipping = true;
-			wireframe = true;
 		}
-	}
-	if (argc > 1 && !wireframe && !showClipping)
-	{
-		printf("Usage: %s [-w|-wireframe] [-c|-clipping]\n", argv[0]);
+		else if (strcmp(argv[i] + strlen(argv[i]) - 4, ".obj") == 0)
+		{// check if has .obj extension
+			objectFile = argv[i];
+		}
 	}
 
 	Engine3D engine;
