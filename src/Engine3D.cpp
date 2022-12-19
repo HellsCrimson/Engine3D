@@ -7,6 +7,8 @@
 #include "olcConsoleGameEngineSDL.h"
 #include "geom.h"
 
+bool wireframe = false;
+
 struct mesh
 {
     std::vector<triangle> tris;
@@ -301,19 +303,34 @@ public:
                          triProjected.p[1].x, triProjected.p[1].y,
                          triProjected.p[2].x, triProjected.p[2].y,
                             triProjected.sym, triProjected.col);
-
-            DrawTriangle(triProjected.p[0].x, triProjected.p[0].y,
+            
+            if (wireframe)
+            {
+                DrawTriangle(triProjected.p[0].x, triProjected.p[0].y,
                          triProjected.p[1].x, triProjected.p[1].y,
                          triProjected.p[2].x, triProjected.p[2].y,
                             PIXEL_SOLID, FG_BLACK);
+            }
         }
 
         return true;
     }
 };
 
-int main(void)
+int main(int argc, char **argv)
 {
+    if (argc > 1)
+    {
+        if (strcmp(argv[1], "-w") == 0 || strcmp(argv[1], "-wireframe") == 0)
+        {
+            wireframe = true;
+        }
+        else
+        {
+            printf("Usage: %s [-w | -wireframe]\n", argv[0]);
+        }
+    }
+    
     Engine3D engine;
     if (engine.ConstructConsole(256, 240, 4, 4))
         engine.Start();
