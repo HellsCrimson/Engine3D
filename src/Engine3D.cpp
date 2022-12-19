@@ -7,70 +7,73 @@
 #include "olcConsoleGameEngineSDL.h"
 #include "geom.h"
 
+#define DIMENSIONS 3
+
 bool wireframe = false;
 bool showClipping = false;
+std::string objectFile = "objects/mountains.obj";
 
 struct mesh
 {
-    std::vector<triangle> tris;
+	std::vector<triangle> tris;
 
-    bool LoadFromObjectFile(std::string sFilename)
-    {
-        std::ifstream f(sFilename);
-        if (!f.is_open())
-            return false;
+	bool LoadFromObjectFile(std::string sFilename)
+	{
+		std::ifstream f(sFilename);
+		if (!f.is_open())
+			return false;
 
-        std::vector<vec3d> verts;
+		std::vector<vec3d> verts;
 
-        while (!f.eof())
-        {
-            char line[128];
-            f.getline(line, 128);
+		while (!f.eof())
+		{
+			char line[128];
+			f.getline(line, 128);
 
-            std::stringstream s;
-            s << line;
+			std::stringstream s;
+			s << line;
 
-            char junk;
+			char junk;
 
-            if (line[0] == 'v')
-            {
-                vec3d v;
-                s >> junk >> v.x >> v.y >> v.z;
-                verts.push_back(v);
-            }
+			if (line[0] == 'v')
+			{
+				vec3d v;
+				s >> junk >> v.x >> v.y >> v.z;
+				verts.push_back(v);
+			}
 
-            if (line[0] == 'f')
-            {
-                int f[3];
-                s >> junk >> f[0] >> f[1] >> f[2];
-                tris.push_back({verts[f[0] - 1], verts[f[1] - 1], verts[f[2] - 1]});
-            }
-        }
+			if (line[0] == 'f')
+			{
+				int f[3];
+				s >> junk >> f[0] >> f[1] >> f[2];
+				tris.push_back({verts[f[0] - 1], verts[f[1] - 1], verts[f[2] - 1]});
+			}
+		}
 
-        return true;
-    }
+		return true;
+	}
 };
 
 class Engine3D : public olcConsoleGameEngine
 {
 public:
-    Engine3D()
-    {
-        m_sAppName = L"3D Engine";
-    }
+	Engine3D()
+	{
+		m_sAppName = L"3D Engine";
+	}
 
 private:
-    mesh meshCube;
-    mat4x4 matProj;
+	mesh meshCube;
+	mat4x4 matProj;
 
-    vec3d vCamera;
-    vec3d vLookDir;
+	vec3d vCamera;
+	vec3d vLookDir;
 
-    float fYaw;
+	float fYaw;
 
-    float fTheta;
+	float fTheta;
 
-    vec3d Matrix_MultiplyVector(mat4x4 &m, vec3d &i)
+	vec3d Matrix_MultiplyVector(mat4x4 &m, vec3d &i)
 	{
 		vec3d v;
 		v.x = i.x * m.m[0][0] + i.y * m.m[1][0] + i.z * m.m[2][0] + i.w * m.m[3][0];
@@ -175,22 +178,42 @@ private:
 		// New Right direction is easy, its just cross product
 		vec3d newRight = Vector_CrossProduct(newUp, newForward);
 
-		// Construct Dimensioning and Translation Matrix	
+		// Construct Dimensioning and Translation Matrix
 		mat4x4 matrix;
-		matrix.m[0][0] = newRight.x;	matrix.m[0][1] = newRight.y;	matrix.m[0][2] = newRight.z;	matrix.m[0][3] = 0.0f;
-		matrix.m[1][0] = newUp.x;		matrix.m[1][1] = newUp.y;		matrix.m[1][2] = newUp.z;		matrix.m[1][3] = 0.0f;
-		matrix.m[2][0] = newForward.x;	matrix.m[2][1] = newForward.y;	matrix.m[2][2] = newForward.z;	matrix.m[2][3] = 0.0f;
-		matrix.m[3][0] = pos.x;			matrix.m[3][1] = pos.y;			matrix.m[3][2] = pos.z;			matrix.m[3][3] = 1.0f;
+		matrix.m[0][0] = newRight.x;
+		matrix.m[0][1] = newRight.y;
+		matrix.m[0][2] = newRight.z;
+		matrix.m[0][3] = 0.0f;
+		matrix.m[1][0] = newUp.x;
+		matrix.m[1][1] = newUp.y;
+		matrix.m[1][2] = newUp.z;
+		matrix.m[1][3] = 0.0f;
+		matrix.m[2][0] = newForward.x;
+		matrix.m[2][1] = newForward.y;
+		matrix.m[2][2] = newForward.z;
+		matrix.m[2][3] = 0.0f;
+		matrix.m[3][0] = pos.x;
+		matrix.m[3][1] = pos.y;
+		matrix.m[3][2] = pos.z;
+		matrix.m[3][3] = 1.0f;
 		return matrix;
-
 	}
 
 	mat4x4 Matrix_QuickInverse(mat4x4 &m) // Only for Rotation/Translation Matrices
 	{
 		mat4x4 matrix;
-		matrix.m[0][0] = m.m[0][0]; matrix.m[0][1] = m.m[1][0]; matrix.m[0][2] = m.m[2][0]; matrix.m[0][3] = 0.0f;
-		matrix.m[1][0] = m.m[0][1]; matrix.m[1][1] = m.m[1][1]; matrix.m[1][2] = m.m[2][1]; matrix.m[1][3] = 0.0f;
-		matrix.m[2][0] = m.m[0][2]; matrix.m[2][1] = m.m[1][2]; matrix.m[2][2] = m.m[2][2]; matrix.m[2][3] = 0.0f;
+		matrix.m[0][0] = m.m[0][0];
+		matrix.m[0][1] = m.m[1][0];
+		matrix.m[0][2] = m.m[2][0];
+		matrix.m[0][3] = 0.0f;
+		matrix.m[1][0] = m.m[0][1];
+		matrix.m[1][1] = m.m[1][1];
+		matrix.m[1][2] = m.m[2][1];
+		matrix.m[1][3] = 0.0f;
+		matrix.m[2][0] = m.m[0][2];
+		matrix.m[2][1] = m.m[1][2];
+		matrix.m[2][2] = m.m[2][2];
+		matrix.m[2][3] = 0.0f;
 		matrix.m[3][0] = -(m.m[3][0] * matrix.m[0][0] + m.m[3][1] * matrix.m[1][0] + m.m[3][2] * matrix.m[2][0]);
 		matrix.m[3][1] = -(m.m[3][0] * matrix.m[0][1] + m.m[3][1] * matrix.m[1][1] + m.m[3][2] * matrix.m[2][1]);
 		matrix.m[3][2] = -(m.m[3][0] * matrix.m[0][2] + m.m[3][1] * matrix.m[1][2] + m.m[3][2] * matrix.m[2][2]);
@@ -200,27 +223,27 @@ private:
 
 	vec3d Vector_Add(vec3d &v1, vec3d &v2)
 	{
-		return { v1.x + v2.x, v1.y + v2.y, v1.z + v2.z };
+		return {v1.x + v2.x, v1.y + v2.y, v1.z + v2.z};
 	}
 
 	vec3d Vector_Sub(vec3d &v1, vec3d &v2)
 	{
-		return { v1.x - v2.x, v1.y - v2.y, v1.z - v2.z };
+		return {v1.x - v2.x, v1.y - v2.y, v1.z - v2.z};
 	}
 
 	vec3d Vector_Mul(vec3d &v1, float k)
 	{
-		return { v1.x * k, v1.y * k, v1.z * k };
+		return {v1.x * k, v1.y * k, v1.z * k};
 	}
 
 	vec3d Vector_Div(vec3d &v1, float k)
 	{
-		return { v1.x / k, v1.y / k, v1.z / k };
+		return {v1.x / k, v1.y / k, v1.z / k};
 	}
 
 	float Vector_DotProduct(vec3d &v1, vec3d &v2)
 	{
-		return v1.x*v2.x + v1.y*v2.y + v1.z * v2.z;
+		return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 	}
 
 	float Vector_Length(vec3d &v)
@@ -231,7 +254,7 @@ private:
 	vec3d Vector_Normalise(vec3d &v)
 	{
 		float l = Vector_Length(v);
-		return { v.x / l, v.y / l, v.z / l };
+		return {v.x / l, v.y / l, v.z / l};
 	}
 
 	vec3d Vector_CrossProduct(vec3d &v1, vec3d &v2)
@@ -269,22 +292,42 @@ private:
 
 		// Create two temporary storage arrays to classify points either side of plane
 		// If distance sign is positive, point lies on "inside" of plane
-		vec3d* inside_points[3];  int nInsidePointCount = 0;
-		vec3d* outside_points[3]; int nOutsidePointCount = 0;
+		vec3d *inside_points[3];
+		int nInsidePointCount = 0;
+		vec3d *outside_points[3];
+		int nOutsidePointCount = 0;
 
 		// Get signed distance of each point in triangle to plane
 		float d0 = dist(in_tri.p[0]);
 		float d1 = dist(in_tri.p[1]);
 		float d2 = dist(in_tri.p[2]);
 
-		if (d0 >= 0) { inside_points[nInsidePointCount++] = &in_tri.p[0]; }
-		else { outside_points[nOutsidePointCount++] = &in_tri.p[0]; }
-		if (d1 >= 0) { inside_points[nInsidePointCount++] = &in_tri.p[1]; }
-		else { outside_points[nOutsidePointCount++] = &in_tri.p[1]; }
-		if (d2 >= 0) { inside_points[nInsidePointCount++] = &in_tri.p[2]; }
-		else { outside_points[nOutsidePointCount++] = &in_tri.p[2]; }
+		if (d0 >= 0)
+		{
+			inside_points[nInsidePointCount++] = &in_tri.p[0];
+		}
+		else
+		{
+			outside_points[nOutsidePointCount++] = &in_tri.p[0];
+		}
+		if (d1 >= 0)
+		{
+			inside_points[nInsidePointCount++] = &in_tri.p[1];
+		}
+		else
+		{
+			outside_points[nOutsidePointCount++] = &in_tri.p[1];
+		}
+		if (d2 >= 0)
+		{
+			inside_points[nInsidePointCount++] = &in_tri.p[2];
+		}
+		else
+		{
+			outside_points[nOutsidePointCount++] = &in_tri.p[2];
+		}
 
-		// Now classify triangle points, and break the input triangle into 
+		// Now classify triangle points, and break the input triangle into
 		// smaller output triangles if required. There are four possible
 		// outcomes...
 
@@ -311,16 +354,16 @@ private:
 			// the plane, the triangle simply becomes a smaller triangle
 
 			// Copy appearance info to new triangle
-            if (showClipping)
-                out_tri1.col = FG_BLUE;
-            else
-			    out_tri1.col =  in_tri.col;
+			if (showClipping)
+				out_tri1.col = FG_BLUE;
+			else
+				out_tri1.col = in_tri.col;
 			out_tri1.sym = in_tri.sym;
 
 			// The inside point is valid, so keep that...
 			out_tri1.p[0] = *inside_points[0];
 
-			// but the two new points are at the locations where the 
+			// but the two new points are at the locations where the
 			// original sides of the triangle (lines) intersect with the plane
 			out_tri1.p[1] = Vector_IntersectPlane(plane_p, plane_n, *inside_points[0], *outside_points[0]);
 			out_tri1.p[2] = Vector_IntersectPlane(plane_p, plane_n, *inside_points[0], *outside_points[1]);
@@ -335,16 +378,16 @@ private:
 			// represent a quad with two new triangles
 
 			// Copy appearance info to new triangles
-            if (showClipping)
-                out_tri1.col = FG_GREEN;
-            else
-			    out_tri1.col =  in_tri.col;
+			if (showClipping)
+				out_tri1.col = FG_GREEN;
+			else
+				out_tri1.col = in_tri.col;
 			out_tri1.sym = in_tri.sym;
 
-            if (showClipping)
-                out_tri2.col = FG_RED;
-            else
-                out_tri2.col =  in_tri.col;
+			if (showClipping)
+				out_tri2.col = FG_RED;
+			else
+				out_tri2.col = in_tri.col;
 			out_tri2.sym = in_tri.sym;
 
 			// The first triangle consists of the two inside points and a new
@@ -355,7 +398,7 @@ private:
 			out_tri1.p[2] = Vector_IntersectPlane(plane_p, plane_n, *inside_points[0], *outside_points[0]);
 
 			// The second triangle is composed of one of he inside points, a
-			// new point determined by the intersection of the other side of the 
+			// new point determined by the intersection of the other side of the
 			// triangle and the plane, and the newly created point above
 			out_tri2.p[0] = *inside_points[1];
 			out_tri2.p[1] = out_tri1.p[2];
@@ -363,250 +406,260 @@ private:
 
 			return 2; // Return two newly formed triangles which form a quad
 		}
-        return 0;
+		return 0;
 	}
 
-    CHAR_INFO GetColour(float lum)
-    {
-        short bg_col, fg_col;
-        wchar_t sym;
-        int pixel_bw = (int)(13.0f * lum);
-        switch (pixel_bw)
-        {
-        case 0:
-            bg_col = BG_BLACK;
-            fg_col = FG_BLACK;
-            break;
-        case 1:
-            bg_col = BG_BLACK;
-            fg_col = FG_DARK_GREY;
-            break;
-        case 2:
-            bg_col = BG_BLACK;
-            fg_col = FG_DARK_GREY;
-            break;
-        case 3:
-            bg_col = BG_BLACK;
-            fg_col = FG_DARK_GREY;
-            break;
-        case 4:
-            bg_col = BG_BLACK;
-            fg_col = FG_DARK_GREY;
-            break;
-        case 5:
-            bg_col = BG_DARK_GREY;
-            fg_col = FG_GREY;
-            break;
-        case 6:
-            bg_col = BG_DARK_GREY;
-            fg_col = FG_GREY;
-            break;
-        case 7:
-            bg_col = BG_DARK_GREY;
-            fg_col = FG_GREY;
-            break;
-        case 8:
-            bg_col = BG_DARK_GREY;
-            fg_col = FG_GREY;
-            break;
-        case 9:
-            bg_col = BG_GREY;
-            fg_col = FG_WHITE;
-            break;
-        case 10:
-            bg_col = BG_GREY;
-            fg_col = FG_WHITE;
-            break;
-        case 11:
-            bg_col = BG_GREY;
-            fg_col = FG_WHITE;
-            break;
-        case 12:
-            bg_col = BG_GREY;
-            fg_col = FG_WHITE;
-            break;
-        default:
-            bg_col = BG_BLACK;
-            fg_col = FG_BLACK;
-        }
+	CHAR_INFO GetColour(float lum)
+	{
+		short bg_col, fg_col;
+		wchar_t sym;
+		int pixel_bw = (int)(13.0f * lum);
+		switch (pixel_bw)
+		{
+		case 0:
+			bg_col = BG_BLACK;
+			fg_col = FG_BLACK;
+			break;
+		case 1:
+			bg_col = BG_BLACK;
+			fg_col = FG_DARK_GREY;
+			break;
+		case 2:
+			bg_col = BG_BLACK;
+			fg_col = FG_DARK_GREY;
+			break;
+		case 3:
+			bg_col = BG_BLACK;
+			fg_col = FG_DARK_GREY;
+			break;
+		case 4:
+			bg_col = BG_BLACK;
+			fg_col = FG_DARK_GREY;
+			break;
+		case 5:
+			bg_col = BG_DARK_GREY;
+			fg_col = FG_GREY;
+			break;
+		case 6:
+			bg_col = BG_DARK_GREY;
+			fg_col = FG_GREY;
+			break;
+		case 7:
+			bg_col = BG_DARK_GREY;
+			fg_col = FG_GREY;
+			break;
+		case 8:
+			bg_col = BG_DARK_GREY;
+			fg_col = FG_GREY;
+			break;
+		case 9:
+			bg_col = BG_GREY;
+			fg_col = FG_WHITE;
+			break;
+		case 10:
+			bg_col = BG_GREY;
+			fg_col = FG_WHITE;
+			break;
+		case 11:
+			bg_col = BG_GREY;
+			fg_col = FG_WHITE;
+			break;
+		case 12:
+			bg_col = BG_GREY;
+			fg_col = FG_WHITE;
+			break;
+		default:
+			bg_col = BG_BLACK;
+			fg_col = FG_BLACK;
+		}
 
-        CHAR_INFO c;
-        c.colour = bg_col | fg_col;
-        c.glyph = PIXEL_SOLID;
-        return c;
-    }
+		CHAR_INFO c;
+		c.colour = bg_col | fg_col;
+		c.glyph = PIXEL_SOLID;
+		return c;
+	}
 
 public:
-    bool OnUserCreate() override
-    {
-        meshCube.LoadFromObjectFile("objects/mountains.obj");
+	bool OnUserCreate() override
+	{
+		meshCube.LoadFromObjectFile(objectFile);
 
-        matProj = Matrix_MakeProjection(90.0f, (float)ScreenHeight() / (float)ScreenWidth(), 0.1f, 1000.0f);
+		matProj = Matrix_MakeProjection(90.0f, (float)ScreenHeight() / (float)ScreenWidth(), 0.1f, 1000.0f);
 
-        return true;
-    }
+		return true;
+	}
 
-    bool OnUserUpdate(float fElapsedTime) override
-    {
-        // Handle User Input
-        if (GetKey(VK_UP).bHeld)
-            vCamera.y += 8.0f * fElapsedTime;
-        
-        if (GetKey(VK_DOWN).bHeld)
-            vCamera.y -= 8.0f * fElapsedTime;
-        
-        if (GetKey(VK_LEFT).bHeld)
-            vCamera.x -= 8.0f * fElapsedTime;
-        
-        if (GetKey(VK_RIGHT).bHeld)
-            vCamera.x += 8.0f * fElapsedTime;
+	bool OnUserUpdate(float fElapsedTime) override
+	{
+		// Handle User Input
+		if (GetKey(VK_SPACE).bHeld)
+			vCamera.y += 8.0f * fElapsedTime;
 
-        vec3d vForward = Vector_Mul(vLookDir, 8.0f * fElapsedTime);
-        
-        if (GetKey(L'Z').bHeld)
-            vCamera = Vector_Add(vCamera, vForward);
-        
-        if (GetKey(L'S').bHeld)
-            vCamera = Vector_Sub(vCamera, vForward);
-        
-        if (GetKey(L'Q').bHeld)
-            fYaw -= 2.0f * fElapsedTime;
-        
-        if (GetKey(L'D').bHeld)
-            fYaw += 2.0f * fElapsedTime;
+		if (GetKey(VK_LCONTROL).bHeld)
+			vCamera.y -= 8.0f * fElapsedTime;
 
-        Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_BLACK);
+		// Up vector
+		vec3d vUp = {0, 1, 0};
+		vec3d vRight = Vector_CrossProduct(vLookDir, vUp);
+		vRight = Vector_Normalise(vRight);
+		if (GetKey(L'A').bHeld)
+		{
+			vec3d translated = Vector_Mul(vRight, 8.0f * fElapsedTime);
+			vCamera = Vector_Sub(vCamera, translated);
+		}
+		if (GetKey(L'E').bHeld)
+		{
+			vec3d translated = Vector_Mul(vRight, 8.0f * fElapsedTime);
+			vCamera = Vector_Add(vCamera, translated);
+		}
 
-        mat4x4 matRotZ;
-        mat4x4 matRotX;
-        //fTheta += 1.0f * fElapsedTime;
+		vec3d vForward;
+		if (GetKey(VK_LSHIFT).bHeld)
+			vForward = Vector_Mul(vLookDir, 16.0f * fElapsedTime);
+		else
+			vForward = Vector_Mul(vLookDir, 8.0f * fElapsedTime);
 
-        matRotZ = Matrix_MakeRotationZ(fTheta * 0.5f);
-        matRotX = Matrix_MakeRotationX(fTheta);
+		if (GetKey(L'Z').bHeld)
+			vCamera = Vector_Add(vCamera, vForward);
 
-        mat4x4 matTrans;
-        matTrans = Matrix_MakeTranslation(0.0f, 0.0f, 16.0f);
+		if (GetKey(L'S').bHeld)
+			vCamera = Vector_Sub(vCamera, vForward);
 
-        mat4x4 matWorld;
-        matWorld = Matrix_MakeIdentity();
-        matWorld = Matrix_MultiplyMatrix(matRotZ, matRotX);
-        matWorld = Matrix_MultiplyMatrix(matWorld, matTrans);
+		if (GetKey(L'Q').bHeld)
+			fYaw -= 2.0f * fElapsedTime;
 
-        vec3d vUp = { 0, 1, 0 };
-        vec3d vTarget = { 0, 0, 1 };
+		if (GetKey(L'D').bHeld)
+			fYaw += 2.0f * fElapsedTime;
 
-        mat4x4 matCameraRot = Matrix_MakeRotationY(fYaw);
-        vLookDir = Matrix_MultiplyVector(matCameraRot, vTarget);
-        vTarget = Vector_Add(vCamera, vLookDir);
+		Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_BLACK);
 
-        mat4x4 matCamera = Matrix_PointAt(vCamera, vTarget, vUp);
+		mat4x4 matRotZ;
+		mat4x4 matRotX;
 
-        mat4x4 matView = Matrix_QuickInverse(matCamera);
+		matRotZ = Matrix_MakeRotationZ(fTheta * 0.5f);
+		matRotX = Matrix_MakeRotationX(fTheta);
 
-        std::vector<triangle> vecTrianglesToRaster;
+		mat4x4 matTrans;
+		matTrans = Matrix_MakeTranslation(0.0f, 0.0f, 16.0f);
 
-        for (auto tri : meshCube.tris)
-        {
-            triangle triProjected;
-            triangle triTransformed;
-            triangle triViewed;
+		mat4x4 matWorld;
+		matWorld = Matrix_MakeIdentity();
+		matWorld = Matrix_MultiplyMatrix(matRotZ, matRotX);
+		matWorld = Matrix_MultiplyMatrix(matWorld, matTrans);
 
-            for (int i = 0; i < 3; i++)
-            {
-                triTransformed.p[i] = Matrix_MultiplyVector(matWorld, tri.p[i]);
-            }
+		vec3d vTarget = {0, 0, 1};
 
-            vec3d normal;
-            vec3d line1;
-            vec3d line2;
-            line1 = Vector_Sub(triTransformed.p[1], triTransformed.p[0]);
-            line2 = Vector_Sub(triTransformed.p[2], triTransformed.p[0]);
+		mat4x4 matCameraRot = Matrix_MakeRotationY(fYaw);
+		vLookDir = Matrix_MultiplyVector(matCameraRot, vTarget);
+		vTarget = Vector_Add(vCamera, vLookDir);
 
-            normal = Vector_CrossProduct(line1, line2);
+		mat4x4 matCamera = Matrix_PointAt(vCamera, vTarget, vUp);
 
-            normal = Vector_Normalise(normal);
+		mat4x4 matView = Matrix_QuickInverse(matCamera);
 
-            vec3d vCameraRay = Vector_Sub(triTransformed.p[0], vCamera);
+		std::vector<triangle> vecTrianglesToRaster;
 
+		for (auto tri : meshCube.tris)
+		{
+			triangle triProjected;
+			triangle triTransformed;
+			triangle triViewed;
 
-            if (Vector_DotProduct(normal, vCameraRay) < 0)
-            {
-                // Illumination
-                vec3d light_direction = {0.0f, 1.0f, -1.0f};
-                light_direction = Vector_Normalise(light_direction);
+			for (int i = 0; i < DIMENSIONS; i++)
+			{
+				triTransformed.p[i] = Matrix_MultiplyVector(matWorld, tri.p[i]);
+			}
 
-                // How similar is normal to light direction (dot product)
-                float dp = std::max(0.1f, Vector_DotProduct(light_direction, normal));
+			vec3d normal;
+			vec3d line1;
+			vec3d line2;
+			line1 = Vector_Sub(triTransformed.p[1], triTransformed.p[0]);
+			line2 = Vector_Sub(triTransformed.p[2], triTransformed.p[0]);
 
-                CHAR_INFO c = GetColour(dp);
-                triTransformed.col = c.colour;
-                triTransformed.sym = c.glyph;
+			normal = Vector_CrossProduct(line1, line2);
 
-                // Convert World Space --> View Space
-                for (int i = 0; i < 3; i++)
-                {
-                    triViewed.p[i] = Matrix_MultiplyVector(matView, triTransformed.p[i]);
-                }
-                triViewed.sym = triTransformed.sym;
-                triViewed.col = triTransformed.col;
+			normal = Vector_Normalise(normal);
 
-                // Clip Viewed Triangle against near plane, this could form two additional
-                // additional triangles.
-                int nClippedTriangles = 0;
-                triangle clipped[2];
-                nClippedTriangles = Triangle_ClipAgainstPlane({0.0f, 0.0f, 0.1f}, {0.0f, 0.0f, 1.0f}, triViewed, clipped[0], clipped[1]);
+			vec3d vCameraRay = Vector_Sub(triTransformed.p[0], vCamera);
 
-                // We may end up with multiple triangles from the clip, so project as
-                // required
-                for (int n = 0; n < nClippedTriangles; n++)
-                {
-                    // Project triangles from 3D --> 2D
-					triProjected.p[0] = Matrix_MultiplyVector(matProj, clipped[n].p[0]);
-					triProjected.p[1] = Matrix_MultiplyVector(matProj, clipped[n].p[1]);
-					triProjected.p[2] = Matrix_MultiplyVector(matProj, clipped[n].p[2]);
+			if (Vector_DotProduct(normal, vCameraRay) < 0)
+			{
+				// Illumination
+				vec3d light_direction = {0.0f, 1.0f, -1.0f};
+				light_direction = Vector_Normalise(light_direction);
+
+				// How similar is normal to light direction (dot product)
+				float dp = std::max(0.1f, Vector_DotProduct(light_direction, normal));
+
+				CHAR_INFO c = GetColour(dp);
+				triTransformed.col = c.colour;
+				triTransformed.sym = c.glyph;
+
+				// Convert World Space --> View Space
+				for (int i = 0; i < DIMENSIONS; i++)
+				{
+					triViewed.p[i] = Matrix_MultiplyVector(matView, triTransformed.p[i]);
+				}
+				triViewed.sym = triTransformed.sym;
+				triViewed.col = triTransformed.col;
+
+				// Clip Viewed Triangle against near plane, this could form two additional
+				// additional triangles.
+				int nClippedTriangles = 0;
+				triangle clipped[2];
+				nClippedTriangles = Triangle_ClipAgainstPlane({0.0f, 0.0f, 0.1f}, {0.0f, 0.0f, 1.0f}, triViewed, clipped[0], clipped[1]);
+
+				// We may end up with multiple triangles from the clip, so project as
+				// required
+				for (int n = 0; n < nClippedTriangles; n++)
+				{
+					// Project triangles from 3D --> 2D
+					for (int i = 0; i < DIMENSIONS; i++)
+					{
+						triProjected.p[i] = Matrix_MultiplyVector(matProj, clipped[n].p[i]);
+					}
 					triProjected.col = clipped[n].col;
 					triProjected.sym = clipped[n].sym;
 
 					// Scale into view, we moved the normalising into cartesian space
 					// out of the matrix.vector function from the previous videos, so
 					// do this manually
-					triProjected.p[0] = Vector_Div(triProjected.p[0], triProjected.p[0].w);
-					triProjected.p[1] = Vector_Div(triProjected.p[1], triProjected.p[1].w);
-					triProjected.p[2] = Vector_Div(triProjected.p[2], triProjected.p[2].w);
+					for (int i = 0; i < DIMENSIONS; i++)
+					{
+						triProjected.p[i] = Vector_Div(triProjected.p[i], triProjected.p[i].w);
+					}
 
 					// X/Y are inverted so put them back
-					triProjected.p[0].x *= -1.0f;
-					triProjected.p[1].x *= -1.0f;
-					triProjected.p[2].x *= -1.0f;
-					triProjected.p[0].y *= -1.0f;
-					triProjected.p[1].y *= -1.0f;
-					triProjected.p[2].y *= -1.0f;
+					for (int i = 0; i < DIMENSIONS; i++)
+					{
+						triProjected.p[i].x *= -1.0f;
+						triProjected.p[i].y *= -1.0f;
+					}
 
 					// Offset verts into visible normalised space
-					vec3d vOffsetView = { 1,1,0 };
-					triProjected.p[0] = Vector_Add(triProjected.p[0], vOffsetView);
-					triProjected.p[1] = Vector_Add(triProjected.p[1], vOffsetView);
-					triProjected.p[2] = Vector_Add(triProjected.p[2], vOffsetView);
-					triProjected.p[0].x *= 0.5f * (float)ScreenWidth();
-					triProjected.p[0].y *= 0.5f * (float)ScreenHeight();
-					triProjected.p[1].x *= 0.5f * (float)ScreenWidth();
-					triProjected.p[1].y *= 0.5f * (float)ScreenHeight();
-					triProjected.p[2].x *= 0.5f * (float)ScreenWidth();
-					triProjected.p[2].y *= 0.5f * (float)ScreenHeight();
+					vec3d vOffsetView = {1, 1, 0};
+					for (int i = 0; i < DIMENSIONS; i++)
+					{
+						triProjected.p[i] = Vector_Add(triProjected.p[i], vOffsetView);
+					}
+					for (int i = 0; i < DIMENSIONS; i++)
+					{
+						triProjected.p[i].x *= 0.5f * (float)ScreenWidth();
+						triProjected.p[i].y *= 0.5f * (float)ScreenHeight();
+					}
 
 					// Store triangle for sorting
 					vecTrianglesToRaster.push_back(triProjected);
-                }
-            }
-        }
+				}
+			}
+		}
 
-        // Sort triangles from back to front
+		// Sort triangles from back to front
 		sort(vecTrianglesToRaster.begin(), vecTrianglesToRaster.end(), [](triangle &t1, triangle &t2)
-		{
+			 {
 			float z1 = (t1.p[0].z + t1.p[1].z + t1.p[2].z) / 3.0f;
 			float z2 = (t2.p[0].z + t2.p[1].z + t2.p[2].z) / 3.0f;
-			return z1 > z2;
-		});
+			return z1 > z2; });
 
 		// Clear Screen
 		Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_BLACK);
@@ -615,7 +668,7 @@ public:
 		for (auto &triToRaster : vecTrianglesToRaster)
 		{
 			// Clip triangles against all four screen edges, this could yield
-			// a bunch of triangles, so create a queue that we traverse to 
+			// a bunch of triangles, so create a queue that we traverse to
 			//  ensure we only test new triangles generated against planes
 			triangle clipped[2];
 			std::list<triangle> listTriangles;
@@ -634,17 +687,25 @@ public:
 					listTriangles.pop_front();
 					nNewTriangles--;
 
-					// Clip it against a plane. We only need to test each 
+					// Clip it against a plane. We only need to test each
 					// subsequent plane, against subsequent new triangles
 					// as all triangles after a plane clip are guaranteed
 					// to lie on the inside of the plane. I like how this
 					// comment is almost completely and utterly justified
 					switch (p)
 					{
-					case 0:	nTrisToAdd = Triangle_ClipAgainstPlane({ 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, test, clipped[0], clipped[1]); break;
-					case 1:	nTrisToAdd = Triangle_ClipAgainstPlane({ 0.0f, (float)ScreenHeight() - 1, 0.0f }, { 0.0f, -1.0f, 0.0f }, test, clipped[0], clipped[1]); break;
-					case 2:	nTrisToAdd = Triangle_ClipAgainstPlane({ 0.0f, 0.0f, 0.0f }, { 1.0f, 0.0f, 0.0f }, test, clipped[0], clipped[1]); break;
-					case 3:	nTrisToAdd = Triangle_ClipAgainstPlane({ (float)ScreenWidth() - 1, 0.0f, 0.0f }, { -1.0f, 0.0f, 0.0f }, test, clipped[0], clipped[1]); break;
+					case 0:
+						nTrisToAdd = Triangle_ClipAgainstPlane({0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f}, test, clipped[0], clipped[1]);
+						break;
+					case 1:
+						nTrisToAdd = Triangle_ClipAgainstPlane({0.0f, (float)ScreenHeight() - 1, 0.0f}, {0.0f, -1.0f, 0.0f}, test, clipped[0], clipped[1]);
+						break;
+					case 2:
+						nTrisToAdd = Triangle_ClipAgainstPlane({0.0f, 0.0f, 0.0f}, {1.0f, 0.0f, 0.0f}, test, clipped[0], clipped[1]);
+						break;
+					case 3:
+						nTrisToAdd = Triangle_ClipAgainstPlane({(float)ScreenWidth() - 1, 0.0f, 0.0f}, {-1.0f, 0.0f, 0.0f}, test, clipped[0], clipped[1]);
+						break;
 					}
 
 					// Clipping may yield a variable number of triangles, so
@@ -656,43 +717,42 @@ public:
 				nNewTriangles = listTriangles.size();
 			}
 
-
 			// Draw the transformed, viewed, clipped, projected, sorted, clipped triangles
 			for (auto &t : listTriangles)
 			{
 				FillTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y, t.sym, t.col);
-                if (wireframe)
-				    DrawTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y, PIXEL_SOLID, FG_BLACK);
+				if (wireframe)
+					DrawTriangle(t.p[0].x, t.p[0].y, t.p[1].x, t.p[1].y, t.p[2].x, t.p[2].y, PIXEL_SOLID, FG_BLACK);
 			}
 		}
 
-        return true;
-    }
+		return true;
+	}
 };
 
 int main(int argc, char **argv)
 {
-    for (int i = 1; i < argc; i++)
-    {
-        if (strcmp(argv[i], "-w") == 0 || strcmp(argv[i], "-wireframe") == 0)
-        {
-            wireframe = true;
-        }
-        else if (strcmp(argv[i], "-c") == 0 || strcmp(argv[i], "-clipping") == 0)
-        {
-            showClipping = true;
-            wireframe = true;
-        }
-    }
-    if (argc > 1 && !wireframe && !showClipping)
-    {
-        printf("Usage: %s [-w|-wireframe] [-c|-clipping]\n", argv[0]);
-    }
-    
-    Engine3D engine;
-    if (engine.ConstructConsole(256, 256, 4, 4))
-        engine.Start();
-    else
-        printf("Failed to start engine!\n");
-    return 0;
+	for (int i = 1; i < argc; i++)
+	{
+		if (strcmp(argv[i], "-w") == 0 || strcmp(argv[i], "-wireframe") == 0)
+		{
+			wireframe = true;
+		}
+		else if (strcmp(argv[i], "-c") == 0 || strcmp(argv[i], "-clipping") == 0)
+		{
+			showClipping = true;
+			wireframe = true;
+		}
+	}
+	if (argc > 1 && !wireframe && !showClipping)
+	{
+		printf("Usage: %s [-w|-wireframe] [-c|-clipping]\n", argv[0]);
+	}
+
+	Engine3D engine;
+	if (engine.ConstructConsole(500, 400, 2, 2))
+		engine.Start();
+	else
+		printf("Failed to start engine!\n");
+	return 0;
 }
