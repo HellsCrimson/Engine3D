@@ -9,6 +9,7 @@ struct vec3d
 struct triangle
 {
     vec3d p[3];
+    uint32_t col;
 };
 
 struct mat4x4
