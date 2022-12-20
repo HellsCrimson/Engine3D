@@ -14,7 +14,7 @@ float timerClipping = 0.0f;
 
 bool wireframe = false;
 bool showClipping = false;
-std::string objectFile = "objects/mountains.obj";
+std::vector<std::string> objectFiles;
 
 struct mesh
 {
@@ -66,7 +66,7 @@ public:
 	}
 
 private:
-	mesh meshCube;
+	std::vector<mesh> meshes;
 	mat4x4 matProj;
 
 	vec3d vCamera;
@@ -485,7 +485,12 @@ private:
 public:
 	bool OnUserCreate() override
 	{
-		meshCube.LoadFromObjectFile(objectFile);
+		for (auto file : objectFiles)
+		{
+			mesh mesh;
+			mesh.LoadFromObjectFile(file);
+			meshes.push_back(mesh);
+		}
 
 		matProj = Matrix_MakeProjection(90.0f, (float)ScreenHeight() / (float)ScreenWidth(), 0.1f, 1000.0f);
 
@@ -584,7 +589,9 @@ public:
 
 		std::vector<triangle> vecTrianglesToRaster;
 
-		for (auto tri : meshCube.tris)
+		for (auto mesh : meshes)
+		{
+		for (auto tri : mesh.tris)
 		{
 			triangle triProjected;
 			triangle triTransformed;
@@ -678,6 +685,7 @@ public:
 				}
 			}
 		}
+		}
 
 		// Sort triangles from back to front
 		sort(vecTrianglesToRaster.begin(), vecTrianglesToRaster.end(), [](triangle &t1, triangle &t2)
@@ -757,9 +765,20 @@ public:
 
 int main(int argc, char **argv)
 {
-	if (argc > 1 && strcmp(argv[1] + strlen(argv[1]) - 4, ".obj") == 0)
+	if (argc > 1)
 	{
-		objectFile = argv[1];
+		for (int i = 1; i < argc; i++)
+		{
+			if (strcmp(argv[i] + strlen(argv[i]) - 4, ".obj") == 0)
+			{
+				objectFiles.push_back(argv[i]);
+			}
+		}
+	}
+	if (objectFiles.size() == 0)
+	{
+		printf("No object files specified!\n");
+		return 0;
 	}
 
 	Engine3D engine;
