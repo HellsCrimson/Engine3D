@@ -1,4 +1,4 @@
-#include "Utils.h"
+#include "Utils.hpp"
 
 int Triangle_ClipAgainstPlane(vec3d plane_p, vec3d plane_n, triangle &in_tri, triangle &out_tri1, triangle &out_tri2, bool showClipping)
 {

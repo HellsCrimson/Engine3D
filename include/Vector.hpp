@@ -2,7 +2,7 @@
 #define VECTOR_H
 
 #include <math.h>
-#include "Geometry.h"
+#include "Geometry.hpp"
 
 vec3d Vector_Add(vec3d &v1, vec3d &v2);
 vec3d Vector_Sub(vec3d &v1, vec3d &v2);

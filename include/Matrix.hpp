@@ -2,8 +2,8 @@
 #define MATRIX_H
 
 #include <math.h>
-#include "Vector.h"
-#include "Geometry.h"
+#include "Vector.hpp"
+#include "Geometry.hpp"
 
 vec3d Matrix_MultiplyVector(mat4x4 &m, vec3d &i);
 mat4x4 Matrix_MakeIdentity();

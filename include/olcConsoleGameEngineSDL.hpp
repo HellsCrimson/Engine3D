@@ -172,7 +172,7 @@ Character Set -> Use Unicode. Thanks! For now, Ill try enabling it for you - Jav
 #include <condition_variable>
 #include <string>
 
-#include "Utils.h"
+#include "Utils.hpp"
 
 #define KEY_OFFSET 256
 #define VK_SPACE (SDLK_SPACE & 0xffff) 			 + KEY_OFFSET

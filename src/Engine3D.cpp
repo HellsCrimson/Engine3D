@@ -4,11 +4,11 @@
 #include <sstream>
 #include <algorithm>
 
-#include "olcConsoleGameEngineSDL.h"
-#include "Vector.h"
-#include "Matrix.h"
-#include "Geometry.h"
-#include "Utils.h"
+#include "olcConsoleGameEngineSDL.hpp"
+#include "Vector.hpp"
+#include "Matrix.hpp"
+#include "Geometry.hpp"
+#include "Utils.hpp"
 
 #define DIMENSIONS 3
 

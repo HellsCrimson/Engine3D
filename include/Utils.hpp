@@ -1,8 +1,8 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include "Geometry.h"
-#include "Vector.h"
+#include "Geometry.hpp"
+#include "Vector.hpp"
 
 struct CHAR_INFO
 {
