@@ -9,6 +9,9 @@
 
 #define DIMENSIONS 3
 
+float timerWireframe = 0.0f;
+float timerClipping = 0.0f;
+
 bool wireframe = false;
 bool showClipping = false;
 std::string objectFile = "objects/mountains.obj";
@@ -491,6 +494,11 @@ public:
 
 	bool OnUserUpdate(float fElapsedTime) override
 	{
+		if (timerWireframe > 0.0f)
+			timerWireframe -= fElapsedTime;
+		if (timerClipping > 0.0f)
+			timerClipping -= fElapsedTime;
+		
 		// Handle User Input
 		if (GetKey(VK_SPACE).bHeld)
 			vCamera.y += 8.0f * fElapsedTime;
@@ -530,6 +538,23 @@ public:
 
 		if (GetKey(L'D').bHeld)
 			fYaw += 2.0f * fElapsedTime;
+		
+		if (GetKey(L'W').bHeld)
+		{
+			if (timerWireframe <= 0)
+			{
+				timerWireframe = 0.3f;
+				wireframe = !wireframe;
+			}
+		}
+		if (GetKey(L'C').bHeld)
+		{
+			if (timerClipping <= 0)
+			{
+				timerClipping = 0.3f;
+				showClipping = !showClipping;
+			}
+		}
 
 		Fill(0, 0, ScreenWidth(), ScreenHeight(), PIXEL_SOLID, FG_BLACK);
 
@@ -732,20 +757,9 @@ public:
 
 int main(int argc, char **argv)
 {
-	for (int i = 1; i < argc; i++)
+	if (argc > 1 && strcmp(argv[1] + strlen(argv[1]) - 4, ".obj") == 0)
 	{
-		if (strcmp(argv[i], "-w") == 0 || strcmp(argv[i], "-wireframe") == 0)
-		{
-			wireframe = true;
-		}
-		else if (strcmp(argv[i], "-c") == 0 || strcmp(argv[i], "-clipping") == 0)
-		{
-			showClipping = true;
-		}
-		else if (strcmp(argv[i] + strlen(argv[i]) - 4, ".obj") == 0)
-		{// check if has .obj extension
-			objectFile = argv[i];
-		}
+		objectFile = argv[1];
 	}
 
 	Engine3D engine;
