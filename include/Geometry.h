@@ -1,5 +1,5 @@
-#ifndef GEOM_H
-#define GEOM_H
+#ifndef GEOMETRY_H
+#define GEOMETRY_H
 
 struct vec3d
 {
@@ -21,4 +21,4 @@ struct mat4x4
     float m[4][4] = {0};
 };
 
-#endif // GEOM_H
+#endif // GEOMETRY_H
