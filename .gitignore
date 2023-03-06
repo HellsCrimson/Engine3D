@@ -31,4 +31,8 @@
 *.app
 
 .vscode
-Engine3D
+*.cmake
+[Bb]uild
+CMakeFiles
+CMakeCache.txt
+compile_commands.json

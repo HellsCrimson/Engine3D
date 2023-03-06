@@ -149,7 +149,7 @@ Character Set -> Use Unicode. Thanks! For now, Ill try enabling it for you - Jav
 #define _UNICODE
 #endif
 
-#define __STDC_LIB_EXT1__ 
+#define __STDC_LIB_EXT1__
 #define __STDC_WANT_LIB_EXT1__ 1
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -175,56 +175,56 @@ Character Set -> Use Unicode. Thanks! For now, Ill try enabling it for you - Jav
 #include "Utils.hpp"
 
 #define KEY_OFFSET 256
-#define VK_SPACE (SDLK_SPACE & 0xffff) 			 + KEY_OFFSET
-#define VK_BACK (SDLK_BACKSPACE & 0xffff)		  + KEY_OFFSET
-#define VK_DELETE (SDLK_DELETE & 0xffff)		  + KEY_OFFSET
-#define VK_HOME (SDLK_HOME & 0xffff)			  + KEY_OFFSET
-#define VK_END (SDLK_END & 0xffff)				  + KEY_OFFSET
-#define VK_RETURN (SDLK_RETURN & 0xffff)		  + KEY_OFFSET
-#define VK_TAB (SDLK_TAB & 0xffff)				  + KEY_OFFSET
-#define VK_INSERT (SDLK_INSERT & 0xffff)		  + KEY_OFFSET
-#define VK_LSHIFT (SDLK_LSHIFT & 0xffff)		  + KEY_OFFSET
-#define VK_RSHIFT (SDLK_RSHIFT & 0xffff)		  + KEY_OFFSET
-#define VK_LCONTROL (SDLK_LCTRL & 0xffff)		  + KEY_OFFSET
-#define VK_RCONTROL (SDLK_RCTRL & 0xffff)		  + KEY_OFFSET
-#define VK_PRIOR (SDLK_PAGEUP & 0xffff)			  + KEY_OFFSET
-#define VK_NEXT (SDLK_PAGEDOWN & 0xffff)		  + KEY_OFFSET
-#define VK_ESCAPE (SDLK_ESCAPE & 0xffff)		  + KEY_OFFSET
-#define VK_UP (SDLK_UP & 0xffff)				  + KEY_OFFSET
-#define VK_DOWN	(SDLK_DOWN & 0xffff)			  + KEY_OFFSET
-#define VK_LEFT (SDLK_LEFT & 0xffff)			  + KEY_OFFSET
-#define VK_RIGHT (SDLK_RIGHT & 0xffff)			  + KEY_OFFSET
-#define VK_F1 (SDLK_F1 & 0xffff)				  + KEY_OFFSET
-#define VK_F2 (SDLK_F2 & 0xffff)				  + KEY_OFFSET
-#define VK_F3 (SDLK_F3 & 0xffff)				  + KEY_OFFSET
-#define VK_F4 (SDLK_F4 & 0xffff)				  + KEY_OFFSET
-#define VK_F5 (SDLK_F5 & 0xffff)				  + KEY_OFFSET
-#define VK_F6 (SDLK_F6 & 0xffff)				  + KEY_OFFSET
-#define VK_F7 (SDLK_F7 & 0xffff)				  + KEY_OFFSET
-#define VK_F8 (SDLK_F8 & 0xffff)				  + KEY_OFFSET
-#define VK_F9 (SDLK_F9 & 0xffff)				  + KEY_OFFSET
-#define VK_F10 (SDLK_F10 & 0xffff)				  + KEY_OFFSET
-#define VK_F11 (SDLK_F11 & 0xffff)				  + KEY_OFFSET
-#define VK_F12 (SDLK_F12 & 0xffff)				  + KEY_OFFSET
-#define VK_MENU (SDLK_MENU & 0xffff)			  + KEY_OFFSET
+#define VK_SPACE (SDLK_SPACE & 0xffff) + KEY_OFFSET
+#define VK_BACK (SDLK_BACKSPACE & 0xffff) + KEY_OFFSET
+#define VK_DELETE (SDLK_DELETE & 0xffff) + KEY_OFFSET
+#define VK_HOME (SDLK_HOME & 0xffff) + KEY_OFFSET
+#define VK_END (SDLK_END & 0xffff) + KEY_OFFSET
+#define VK_RETURN (SDLK_RETURN & 0xffff) + KEY_OFFSET
+#define VK_TAB (SDLK_TAB & 0xffff) + KEY_OFFSET
+#define VK_INSERT (SDLK_INSERT & 0xffff) + KEY_OFFSET
+#define VK_LSHIFT (SDLK_LSHIFT & 0xffff) + KEY_OFFSET
+#define VK_RSHIFT (SDLK_RSHIFT & 0xffff) + KEY_OFFSET
+#define VK_LCONTROL (SDLK_LCTRL & 0xffff) + KEY_OFFSET
+#define VK_RCONTROL (SDLK_RCTRL & 0xffff) + KEY_OFFSET
+#define VK_PRIOR (SDLK_PAGEUP & 0xffff) + KEY_OFFSET
+#define VK_NEXT (SDLK_PAGEDOWN & 0xffff) + KEY_OFFSET
+#define VK_ESCAPE (SDLK_ESCAPE & 0xffff) + KEY_OFFSET
+#define VK_UP (SDLK_UP & 0xffff) + KEY_OFFSET
+#define VK_DOWN (SDLK_DOWN & 0xffff) + KEY_OFFSET
+#define VK_LEFT (SDLK_LEFT & 0xffff) + KEY_OFFSET
+#define VK_RIGHT (SDLK_RIGHT & 0xffff) + KEY_OFFSET
+#define VK_F1 (SDLK_F1 & 0xffff) + KEY_OFFSET
+#define VK_F2 (SDLK_F2 & 0xffff) + KEY_OFFSET
+#define VK_F3 (SDLK_F3 & 0xffff) + KEY_OFFSET
+#define VK_F4 (SDLK_F4 & 0xffff) + KEY_OFFSET
+#define VK_F5 (SDLK_F5 & 0xffff) + KEY_OFFSET
+#define VK_F6 (SDLK_F6 & 0xffff) + KEY_OFFSET
+#define VK_F7 (SDLK_F7 & 0xffff) + KEY_OFFSET
+#define VK_F8 (SDLK_F8 & 0xffff) + KEY_OFFSET
+#define VK_F9 (SDLK_F9 & 0xffff) + KEY_OFFSET
+#define VK_F10 (SDLK_F10 & 0xffff) + KEY_OFFSET
+#define VK_F11 (SDLK_F11 & 0xffff) + KEY_OFFSET
+#define VK_F12 (SDLK_F12 & 0xffff) + KEY_OFFSET
+#define VK_MENU (SDLK_MENU & 0xffff) + KEY_OFFSET
 
 constexpr SDL_Color colour_lookup[] = {
-	SDL_Color{ 0,0,0,255 },      // 0
-	SDL_Color{ 0,0,127,255 },    // 1
-	SDL_Color{ 0,127,0,255 },    // 2
-	SDL_Color{ 0,127,127,255 },  // 3
-	SDL_Color{ 127,0,0,255 },    // 4
-	SDL_Color{ 127,0,127,255 },  // 5
-	SDL_Color{ 127,127,0,255 },  // 6
-	SDL_Color{ 192,192,192,255 },// 7
-	SDL_Color{ 127,127,127,255 },// 8
-	SDL_Color{ 0,0,255,255 },    // 9
-	SDL_Color{ 0,255,0,255 },    // A
-	SDL_Color{ 0,255,255,255 },  // B
-	SDL_Color{ 255,0,0,255 },    // C
-	SDL_Color{ 255,0,255,255 },  // D
-	SDL_Color{ 255,255,0,255 },  // E
-	SDL_Color{ 255,255,255,255 },// F
+	SDL_Color{0, 0, 0, 255},	   // 0
+	SDL_Color{0, 0, 127, 255},	   // 1
+	SDL_Color{0, 127, 0, 255},	   // 2
+	SDL_Color{0, 127, 127, 255},   // 3
+	SDL_Color{127, 0, 0, 255},	   // 4
+	SDL_Color{127, 0, 127, 255},   // 5
+	SDL_Color{127, 127, 0, 255},   // 6
+	SDL_Color{192, 192, 192, 255}, // 7
+	SDL_Color{127, 127, 127, 255}, // 8
+	SDL_Color{0, 0, 255, 255},	   // 9
+	SDL_Color{0, 255, 0, 255},	   // A
+	SDL_Color{0, 255, 255, 255},   // B
+	SDL_Color{255, 0, 0, 255},	   // C
+	SDL_Color{255, 0, 255, 255},   // D
+	SDL_Color{255, 255, 0, 255},   // E
+	SDL_Color{255, 255, 255, 255}, // F
 };
 
 class olcSprite
@@ -232,7 +232,6 @@ class olcSprite
 public:
 	olcSprite()
 	{
-
 	}
 
 	olcSprite(int w, int h)
@@ -246,7 +245,8 @@ public:
 			Create(8, 8);
 	}
 
-	~olcSprite() {
+	~olcSprite()
+	{
 		delete[] m_Glyphs;
 		delete[] m_Colours;
 	}
@@ -262,9 +262,9 @@ private:
 	{
 		nWidth = w;
 		nHeight = h;
-		m_Glyphs = new unsigned short[w*h];
-		m_Colours = new short[w*h];
-		for (int i = 0; i < w*h; i++)
+		m_Glyphs = new unsigned short[w * h];
+		m_Colours = new short[w * h];
+		for (int i = 0; i < w * h; i++)
 		{
 			m_Glyphs[i] = L' ';
 			m_Colours[i] = FG_BLACK;
@@ -333,12 +333,13 @@ public:
 #else
 		std::ofstream f(sFile.c_str(), std::ios::out | std::ios::binary);
 #endif
-		if (!f.is_open()) return false;
+		if (!f.is_open())
+			return false;
 
-		f.write((char*)&nWidth, sizeof(int));
-		f.write((char*)&nHeight, sizeof(int));
-		f.write((char*)m_Colours, sizeof(short) * nWidth * nHeight);
-		f.write((char*)m_Glyphs, sizeof(wchar_t) * nWidth * nHeight);
+		f.write((char *)&nWidth, sizeof(int));
+		f.write((char *)&nHeight, sizeof(int));
+		f.write((char *)m_Colours, sizeof(short) * nWidth * nHeight);
+		f.write((char *)m_Glyphs, sizeof(wchar_t) * nWidth * nHeight);
 
 		f.close();
 
@@ -359,16 +360,17 @@ public:
 #else
 		std::ifstream f(sFile.c_str(), std::ios::in | std::ios::binary);
 #endif
-		if (!f.is_open()) return false;
+		if (!f.is_open())
+			return false;
 
 		// get file data
-		f.read((char*)&nWidth, sizeof(int));
-		f.read((char*)&nHeight, sizeof(int));
+		f.read((char *)&nWidth, sizeof(int));
+		f.read((char *)&nHeight, sizeof(int));
 
 		Create(nWidth, nHeight);
 
-		f.read((char*)m_Colours, sizeof(short) * nWidth * nHeight);
-		f.read((char*)m_Glyphs, sizeof(wchar_t) * nWidth * nHeight);
+		f.read((char *)m_Colours, sizeof(short) * nWidth * nHeight);
+		f.read((char *)m_Glyphs, sizeof(wchar_t) * nWidth * nHeight);
 
 		f.close();
 
@@ -377,7 +379,7 @@ public:
 };
 
 int len = 0, done = 0, bits = 0, which = 0,
-sample_size = 0, position = 0, rate = 0;
+	sample_size = 0, position = 0, rate = 0;
 Sint16 *stream[2];
 
 class olcConsoleGameEngine
@@ -387,7 +389,6 @@ public:
 	{
 		m_nScreenWidth = 80;
 		m_nScreenHeight = 30;
-
 
 		memset(m_keyNewState, 0, 512 * sizeof(bool));
 		memset(m_keyOldState, 0, 512 * sizeof(bool));
@@ -405,15 +406,12 @@ public:
 		m_nFontWidth = fontw;
 		m_nFontHeight = fonth;
 
-
-
-
 		// Allocate memory for screen buffer
-		m_bufScreen[0] = new CHAR_INFO[m_nScreenWidth*m_nScreenHeight];
-		m_bufScreen[1] = new CHAR_INFO[m_nScreenWidth*m_nScreenHeight];
+		m_bufScreen[0] = new CHAR_INFO[m_nScreenWidth * m_nScreenHeight];
+		m_bufScreen[1] = new CHAR_INFO[m_nScreenWidth * m_nScreenHeight];
 		// NOTE(MrBadNewS): set buffers to zero, old way
-		memset(m_bufScreen[0], 0, m_nScreenWidth*m_nScreenHeight * sizeof(CHAR_INFO));
-		memset(m_bufScreen[1], 0, m_nScreenWidth*m_nScreenHeight * sizeof(CHAR_INFO));
+		memset(m_bufScreen[0], 0, m_nScreenWidth * m_nScreenHeight * sizeof(CHAR_INFO));
+		memset(m_bufScreen[1], 0, m_nScreenWidth * m_nScreenHeight * sizeof(CHAR_INFO));
 		m_nCurrentBuffer = 0;
 
 		return 1;
@@ -460,10 +458,14 @@ public:
 
 	void Clip(int &x, int &y)
 	{
-		if (x < 0) x = 0;
-		if (x >= m_nScreenWidth) x = m_nScreenWidth;
-		if (y < 0) y = 0;
-		if (y >= m_nScreenHeight) y = m_nScreenHeight;
+		if (x < 0)
+			x = 0;
+		if (x >= m_nScreenWidth)
+			x = m_nScreenWidth;
+		if (y < 0)
+			y = 0;
+		if (y >= m_nScreenHeight)
+			y = m_nScreenHeight;
 	}
 
 	void DrawLine(int x1, int y1, int x2, int y2, wchar_t c = PIXEL_SOLID, short col = 0x000F)
@@ -544,20 +546,23 @@ public:
 		int x = 0;
 		int y = r;
 		int p = 3 - 2 * r;
-		if (!r) return;
+		if (!r)
+			return;
 
 		while (y >= x) // only formulate 1/8 of circle
 		{
-			Draw(xc - x, yc - y, c, col);//upper left left
-			Draw(xc - y, yc - x, c, col);//upper upper left
-			Draw(xc + y, yc - x, c, col);//upper upper right
-			Draw(xc + x, yc - y, c, col);//upper right right
-			Draw(xc - x, yc + y, c, col);//lower left left
-			Draw(xc - y, yc + x, c, col);//lower lower left
-			Draw(xc + y, yc + x, c, col);//lower lower right
-			Draw(xc + x, yc + y, c, col);//lower right right
-			if (p < 0) p += 4 * x++ + 6;
-			else p += 4 * (x++ - y--) + 10;
+			Draw(xc - x, yc - y, c, col); // upper left left
+			Draw(xc - y, yc - x, c, col); // upper upper left
+			Draw(xc + y, yc - x, c, col); // upper upper right
+			Draw(xc + x, yc - y, c, col); // upper right right
+			Draw(xc - x, yc + y, c, col); // lower left left
+			Draw(xc - y, yc + x, c, col); // lower lower left
+			Draw(xc + y, yc + x, c, col); // lower lower right
+			Draw(xc + x, yc + y, c, col); // lower right right
+			if (p < 0)
+				p += 4 * x++ + 6;
+			else
+				p += 4 * (x++ - y--) + 10;
 		}
 	}
 
@@ -567,7 +572,8 @@ public:
 		int x = 0;
 		int y = r;
 		int p = 3 - 2 * r;
-		if (!r) return;
+		if (!r)
+			return;
 
 		auto drawline = [&](int sx, int ex, int ny)
 		{
@@ -582,8 +588,10 @@ public:
 			drawline(xc - y, xc + y, yc - x);
 			drawline(xc - x, xc + x, yc + y);
 			drawline(xc - y, xc + y, yc + x);
-			if (p < 0) p += 4 * x++ + 6;
-			else p += 4 * (x++ - y--) + 10;
+			if (p < 0)
+				p += 4 * x++ + 6;
+			else
+				p += 4 * (x++ - y--) + 10;
 		}
 	};
 
@@ -653,13 +661,12 @@ public:
 		{
 			int j = (i + 1);
 			DrawLine((int)vecTransformedCoordinates[i % verts].first, (int)vecTransformedCoordinates[i % verts].second,
-				(int)vecTransformedCoordinates[j % verts].first, (int)vecTransformedCoordinates[j % verts].second, PIXEL_SOLID, col);
+					 (int)vecTransformedCoordinates[j % verts].first, (int)vecTransformedCoordinates[j % verts].second, PIXEL_SOLID, col);
 		}
 	}
 
 	~olcConsoleGameEngine()
 	{
-
 	}
 
 public:
@@ -668,10 +675,10 @@ public:
 		m_bAtomActive = true;
 
 		// Start the thread
-		//std::thread t = std::thread(&olcConsoleGameEngine::GameThread, this);
+		// std::thread t = std::thread(&olcConsoleGameEngine::GameThread, this);
 		GameThread();
 		// Wait for thread to be exited
-		//t.join();
+		// t.join();
 	}
 
 	int ScreenWidth()
@@ -685,7 +692,8 @@ public:
 	}
 
 private:
-	void EnableSound() {
+	void EnableSound()
+	{
 		m_bEnableSound = true;
 	}
 
@@ -708,8 +716,7 @@ private:
 			SDL_WINDOWPOS_UNDEFINED,
 			m_nScreenWidth * m_nFontWidth,
 			m_nScreenHeight * m_nFontHeight,
-			SDL_WINDOW_SHOWN
-		);
+			SDL_WINDOW_SHOWN);
 
 		// Create renderer
 		m_render = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE);
@@ -821,7 +828,6 @@ private:
 						}
 					}
 					break;
-
 					}
 				}
 
@@ -870,7 +876,7 @@ private:
 					m_mouseOldState[m] = m_mouseNewState[m];
 				}
 
-	// Handle Frame Update
+				// Handle Frame Update
 				if (!OnUserUpdate(fElapsedTime))
 					m_bAtomActive = false;
 
@@ -899,9 +905,9 @@ private:
 
 							// Draw Foreground
 							int cidx = (buff_new[i].colour & 0x00F0) >> 4;
-							//SDL_Rect src_bg = { (cidx+45) * 8, 88, 8, 8 };
-							SDL_Rect src_bg = { (cidx + 0) * 16, 0, 16, 16 };
-							SDL_Rect dst = { x * m_nFontWidth, y * m_nFontHeight, m_nFontWidth,	m_nFontHeight };
+							// SDL_Rect src_bg = { (cidx+45) * 8, 88, 8, 8 };
+							SDL_Rect src_bg = {(cidx + 0) * 16, 0, 16, 16};
+							SDL_Rect dst = {x * m_nFontWidth, y * m_nFontHeight, m_nFontWidth, m_nFontHeight};
 							SDL_SetTextureColorMod(m_fontFile, 255, 255, 255);
 							SDL_SetTextureAlphaMod(m_fontFile, 255);
 							SDL_RenderCopy(m_render, m_fontFile, &src_bg, &dst);
@@ -912,7 +918,7 @@ private:
 							SDL_SetTextureAlphaMod(m_fontFile, fg_col.a);
 
 							// Draw glyph
-							SDL_Rect src_fg = { cx * (16), cy * (16), 16, 16 };
+							SDL_Rect src_fg = {cx * (16), cy * (16), 16, 16};
 							SDL_RenderCopy(m_render, m_fontFile, &src_fg, &dst);
 						}
 					}
@@ -922,7 +928,6 @@ private:
 				SDL_SetRenderTarget(m_render, nullptr);
 				SDL_RenderCopy(m_render, m_screen, nullptr, nullptr);
 				SDL_RenderPresent(m_render);
-
 
 				// Flip buffers
 				m_nCurrentBuffer = (m_nCurrentBuffer + 1) % 2;
@@ -953,14 +958,13 @@ public:
 	virtual bool OnUserCreate() = 0;
 	virtual bool OnUserUpdate(float fElapsedTime) = 0;
 
-	// Optional for clean up 
+	// Optional for clean up
 	virtual bool OnUserDestroy()
 	{
 		return true;
 	}
 
 protected:
-
 	struct sKeyState
 	{
 		bool bPressed;
@@ -973,7 +977,7 @@ protected:
 		sKeyState _state[512];
 
 	public:
-		sKeyState & operator[] (int nKeyID)
+		sKeyState &operator[](int nKeyID)
 		{
 			SDL_Keycode scode = (SDLK_UNKNOWN & 0xffff);
 
@@ -985,42 +989,114 @@ protected:
 
 			switch (nKeyID)
 			{
-			case L'A': scode = (SDLK_a & 0xffff); break;
-			case L'B': scode = (SDLK_b & 0xffff); break;
-			case L'C': scode = (SDLK_c & 0xffff); break;
-			case L'D': scode = (SDLK_d & 0xffff); break;
-			case L'E': scode = (SDLK_e & 0xffff); break;
-			case L'F': scode = (SDLK_f & 0xffff); break;
-			case L'G': scode = (SDLK_g & 0xffff); break;
-			case L'H': scode = (SDLK_h & 0xffff); break;
-			case L'I': scode = (SDLK_i & 0xffff); break;
-			case L'J': scode = (SDLK_j & 0xffff); break;
-			case L'K': scode = (SDLK_k & 0xffff); break;
-			case L'L': scode = (SDLK_l & 0xffff); break;
-			case L'M': scode = (SDLK_m & 0xffff); break;
-			case L'N': scode = (SDLK_n & 0xffff); break;
-			case L'O': scode = (SDLK_o & 0xffff); break;
-			case L'P': scode = (SDLK_p & 0xffff); break;
-			case L'Q': scode = (SDLK_q & 0xffff); break;
-			case L'R': scode = (SDLK_r & 0xffff); break;
-			case L'S': scode = (SDLK_s & 0xffff); break;
-			case L'T': scode = (SDLK_t & 0xffff); break;
-			case L'U': scode = (SDLK_u & 0xffff); break;
-			case L'V': scode = (SDLK_v & 0xffff); break;
-			case L'W': scode = (SDLK_w & 0xffff); break;
-			case L'X': scode = (SDLK_x & 0xffff); break;
-			case L'Y': scode = (SDLK_y & 0xffff); break;
-			case L'Z': scode = (SDLK_z & 0xffff); break;
-			case L'0': scode = (SDLK_0 & 0xffff); break;
-			case L'1': scode = (SDLK_1 & 0xffff); break;
-			case L'2': scode = (SDLK_2 & 0xffff); break;
-			case L'3': scode = (SDLK_3 & 0xffff); break;
-			case L'4': scode = (SDLK_4 & 0xffff); break;
-			case L'5': scode = (SDLK_5 & 0xffff); break;
-			case L'6': scode = (SDLK_6 & 0xffff); break;
-			case L'7': scode = (SDLK_7 & 0xffff); break;
-			case L'8': scode = (SDLK_8 & 0xffff); break;
-			case L'9': scode = (SDLK_9 & 0xffff); break;
+			case L'A':
+				scode = (SDLK_a & 0xffff);
+				break;
+			case L'B':
+				scode = (SDLK_b & 0xffff);
+				break;
+			case L'C':
+				scode = (SDLK_c & 0xffff);
+				break;
+			case L'D':
+				scode = (SDLK_d & 0xffff);
+				break;
+			case L'E':
+				scode = (SDLK_e & 0xffff);
+				break;
+			case L'F':
+				scode = (SDLK_f & 0xffff);
+				break;
+			case L'G':
+				scode = (SDLK_g & 0xffff);
+				break;
+			case L'H':
+				scode = (SDLK_h & 0xffff);
+				break;
+			case L'I':
+				scode = (SDLK_i & 0xffff);
+				break;
+			case L'J':
+				scode = (SDLK_j & 0xffff);
+				break;
+			case L'K':
+				scode = (SDLK_k & 0xffff);
+				break;
+			case L'L':
+				scode = (SDLK_l & 0xffff);
+				break;
+			case L'M':
+				scode = (SDLK_m & 0xffff);
+				break;
+			case L'N':
+				scode = (SDLK_n & 0xffff);
+				break;
+			case L'O':
+				scode = (SDLK_o & 0xffff);
+				break;
+			case L'P':
+				scode = (SDLK_p & 0xffff);
+				break;
+			case L'Q':
+				scode = (SDLK_q & 0xffff);
+				break;
+			case L'R':
+				scode = (SDLK_r & 0xffff);
+				break;
+			case L'S':
+				scode = (SDLK_s & 0xffff);
+				break;
+			case L'T':
+				scode = (SDLK_t & 0xffff);
+				break;
+			case L'U':
+				scode = (SDLK_u & 0xffff);
+				break;
+			case L'V':
+				scode = (SDLK_v & 0xffff);
+				break;
+			case L'W':
+				scode = (SDLK_w & 0xffff);
+				break;
+			case L'X':
+				scode = (SDLK_x & 0xffff);
+				break;
+			case L'Y':
+				scode = (SDLK_y & 0xffff);
+				break;
+			case L'Z':
+				scode = (SDLK_z & 0xffff);
+				break;
+			case L'0':
+				scode = (SDLK_0 & 0xffff);
+				break;
+			case L'1':
+				scode = (SDLK_1 & 0xffff);
+				break;
+			case L'2':
+				scode = (SDLK_2 & 0xffff);
+				break;
+			case L'3':
+				scode = (SDLK_3 & 0xffff);
+				break;
+			case L'4':
+				scode = (SDLK_4 & 0xffff);
+				break;
+			case L'5':
+				scode = (SDLK_5 & 0xffff);
+				break;
+			case L'6':
+				scode = (SDLK_6 & 0xffff);
+				break;
+			case L'7':
+				scode = (SDLK_7 & 0xffff);
+				break;
+			case L'8':
+				scode = (SDLK_8 & 0xffff);
+				break;
+			case L'9':
+				scode = (SDLK_9 & 0xffff);
+				break;
 
 				/*case L'\'': scode = (SDLK_APOSTROPHE & 0xffff); break;
 				case L'\\': scode = (SDLK_BACKSLASH & 0xffff); break;
@@ -1033,7 +1109,8 @@ protected:
 				case L';': scode = (SDLK_SEMICOLON & 0xffff); break;
 				case L'/': scode = (SDLK_SLASH & 0xffff); break;*/
 
-			default: scode = (SDL_Keycode)nKeyID;
+			default:
+				scode = (SDL_Keycode)nKeyID;
 			}
 
 			return _state[scode];
@@ -1052,12 +1129,10 @@ public:
 		return m_keys[nKeyID];
 	}
 
-
 	int GetMouseX() { return m_mousePosX; }
 	int GetMouseY() { return m_mousePosY; }
 	sKeyState GetMouse(int nMouseButtonID) { return m_mouse[nMouseButtonID]; }
 	bool IsFocused() { return m_bConsoleInFocus; }
-
 
 protected:
 	int Error(const wchar_t *msg)
@@ -1067,12 +1142,13 @@ protected:
 		return 0;
 	}
 
-	void LoadFontFile(const std::string& fname)
+	void LoadFontFile(const std::string &fname)
 	{
 		// Load image.
-		SDL_Surface* temp = SDL_LoadBMP(fname.c_str());
+		SDL_Surface *temp = SDL_LoadBMP(fname.c_str());
 
-		if (temp == nullptr) {
+		if (temp == nullptr)
+		{
 			std::wcout << L"Please download the necessary bmp file too!\n";
 			throw 1;
 		}
@@ -1088,7 +1164,7 @@ protected:
 		SDL_FreeSurface(temp);
 	}
 
-	//static BOOL CloseHandler(DWORD evt)
+	// static BOOL CloseHandler(DWORD evt)
 	//{
 	//	// Note this gets called in a seperate OS thread, so it must
 	//	// only exit when the game has finished cleaning up, or else
@@ -1104,7 +1180,6 @@ protected:
 	//	return true;
 	//}
 
-
 	void DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, short c = 0x2588, short col = 0x000F)
 	{
 		DrawLine(x1, y1, x2, y2, c, col);
@@ -1115,8 +1190,10 @@ protected:
 	// https://www.avrfreaks.net/sites/default/files/triangles.c
 	void FillTriangle(int x1, int y1, int x2, int y2, int x3, int y3, short c = 0x2588, short col = 0x000F)
 	{
-		auto SWAP = [](int &x, int &y) { int t = x; x = y; y = t; };
-		auto drawline = [&](int sx, int ex, int ny) { for (int i = sx; i <= ex; i++) Draw(i, ny, c, col); };
+		auto SWAP = [](int &x, int &y)
+		{ int t = x; x = y; y = t; };
+		auto drawline = [&](int sx, int ex, int ny)
+		{ for (int i = sx; i <= ex; i++) Draw(i, ny, c, col); };
 
 		int t1x, t2x, y, minx, maxx, t1xp, t2xp;
 		bool changed1 = false;
@@ -1124,133 +1201,232 @@ protected:
 		int signx1, signx2, dx1, dy1, dx2, dy2;
 		int e1, e2;
 		// Sort vertices
-		if (y1 > y2) { SWAP(y1, y2); SWAP(x1, x2); }
-		if (y1 > y3) { SWAP(y1, y3); SWAP(x1, x3); }
-		if (y2 > y3) { SWAP(y2, y3); SWAP(x2, x3); }
+		if (y1 > y2)
+		{
+			SWAP(y1, y2);
+			SWAP(x1, x2);
+		}
+		if (y1 > y3)
+		{
+			SWAP(y1, y3);
+			SWAP(x1, x3);
+		}
+		if (y2 > y3)
+		{
+			SWAP(y2, y3);
+			SWAP(x2, x3);
+		}
 
-		t1x = t2x = x1; y = y1;   // Starting points
-		dx1 = (int)(x2 - x1); if (dx1 < 0) { dx1 = -dx1; signx1 = -1; }
-		else signx1 = 1;
+		t1x = t2x = x1;
+		y = y1; // Starting points
+		dx1 = (int)(x2 - x1);
+		if (dx1 < 0)
+		{
+			dx1 = -dx1;
+			signx1 = -1;
+		}
+		else
+			signx1 = 1;
 		dy1 = (int)(y2 - y1);
 
-		dx2 = (int)(x3 - x1); if (dx2 < 0) { dx2 = -dx2; signx2 = -1; }
-		else signx2 = 1;
+		dx2 = (int)(x3 - x1);
+		if (dx2 < 0)
+		{
+			dx2 = -dx2;
+			signx2 = -1;
+		}
+		else
+			signx2 = 1;
 		dy2 = (int)(y3 - y1);
 
-		if (dy1 > dx1) {   // swap values
+		if (dy1 > dx1)
+		{ // swap values
 			SWAP(dx1, dy1);
 			changed1 = true;
 		}
-		if (dy2 > dx2) {   // swap values
+		if (dy2 > dx2)
+		{ // swap values
 			SWAP(dy2, dx2);
 			changed2 = true;
 		}
 
 		e2 = (int)(dx2 >> 1);
 		// Flat top, just process the second half
-		if (y1 == y2) goto next;
+		if (y1 == y2)
+			goto next;
 		e1 = (int)(dx1 >> 1);
 
-		for (int i = 0; i < dx1;) {
-			t1xp = 0; t2xp = 0;
-			if (t1x < t2x) { minx = t1x; maxx = t2x; }
-			else { minx = t2x; maxx = t1x; }
+		for (int i = 0; i < dx1;)
+		{
+			t1xp = 0;
+			t2xp = 0;
+			if (t1x < t2x)
+			{
+				minx = t1x;
+				maxx = t2x;
+			}
+			else
+			{
+				minx = t2x;
+				maxx = t1x;
+			}
 			// process first line until y value is about to change
-			while (i < dx1) {
+			while (i < dx1)
+			{
 				i++;
 				e1 += dy1;
-				while (e1 >= dx1) {
+				while (e1 >= dx1)
+				{
 					e1 -= dx1;
-					if (changed1) t1xp = signx1;//t1x += signx1;
-					else          goto next1;
+					if (changed1)
+						t1xp = signx1; // t1x += signx1;
+					else
+						goto next1;
 				}
-				if (changed1) break;
-				else t1x += signx1;
+				if (changed1)
+					break;
+				else
+					t1x += signx1;
 			}
 			// Move line
 		next1:
 			// process second line until y value is about to change
-			while (1) {
+			while (1)
+			{
 				e2 += dy2;
-				while (e2 >= dx2) {
+				while (e2 >= dx2)
+				{
 					e2 -= dx2;
-					if (changed2) t2xp = signx2;//t2x += signx2;
-					else          goto next2;
+					if (changed2)
+						t2xp = signx2; // t2x += signx2;
+					else
+						goto next2;
 				}
-				if (changed2)     break;
-				else              t2x += signx2;
+				if (changed2)
+					break;
+				else
+					t2x += signx2;
 			}
 		next2:
-			if (minx > t1x) minx = t1x; if (minx > t2x) minx = t2x;
-			if (maxx < t1x) maxx = t1x; if (maxx < t2x) maxx = t2x;
-			drawline(minx, maxx, y);    // Draw line from min to max points found on the y
-										 // Now increase y
-			if (!changed1) t1x += signx1;
+			if (minx > t1x)
+				minx = t1x;
+			if (minx > t2x)
+				minx = t2x;
+			if (maxx < t1x)
+				maxx = t1x;
+			if (maxx < t2x)
+				maxx = t2x;
+			drawline(minx, maxx, y); // Draw line from min to max points found on the y
+									 // Now increase y
+			if (!changed1)
+				t1x += signx1;
 			t1x += t1xp;
-			if (!changed2) t2x += signx2;
+			if (!changed2)
+				t2x += signx2;
 			t2x += t2xp;
 			y += 1;
-			if (y == y2) break;
-
+			if (y == y2)
+				break;
 		}
 	next:
 		// Second half
-		dx1 = (int)(x3 - x2); if (dx1 < 0) { dx1 = -dx1; signx1 = -1; }
-		else signx1 = 1;
+		dx1 = (int)(x3 - x2);
+		if (dx1 < 0)
+		{
+			dx1 = -dx1;
+			signx1 = -1;
+		}
+		else
+			signx1 = 1;
 		dy1 = (int)(y3 - y2);
 		t1x = x2;
 
-		if (dy1 > dx1) {   // swap values
+		if (dy1 > dx1)
+		{ // swap values
 			SWAP(dy1, dx1);
 			changed1 = true;
 		}
-		else changed1 = false;
+		else
+			changed1 = false;
 
 		e1 = (int)(dx1 >> 1);
 
-		for (int i = 0; i <= dx1; i++) {
-			t1xp = 0; t2xp = 0;
-			if (t1x < t2x) { minx = t1x; maxx = t2x; }
-			else { minx = t2x; maxx = t1x; }
+		for (int i = 0; i <= dx1; i++)
+		{
+			t1xp = 0;
+			t2xp = 0;
+			if (t1x < t2x)
+			{
+				minx = t1x;
+				maxx = t2x;
+			}
+			else
+			{
+				minx = t2x;
+				maxx = t1x;
+			}
 			// process first line until y value is about to change
-			while (i < dx1) {
+			while (i < dx1)
+			{
 				e1 += dy1;
-				while (e1 >= dx1) {
+				while (e1 >= dx1)
+				{
 					e1 -= dx1;
-					if (changed1) { t1xp = signx1; break; }//t1x += signx1;
-					else          goto next3;
+					if (changed1)
+					{
+						t1xp = signx1;
+						break;
+					} // t1x += signx1;
+					else
+						goto next3;
 				}
-				if (changed1) break;
-				else   	   	  t1x += signx1;
-				if (i < dx1) i++;
+				if (changed1)
+					break;
+				else
+					t1x += signx1;
+				if (i < dx1)
+					i++;
 			}
 		next3:
 			// process second line until y value is about to change
-			while (t2x != x3) {
+			while (t2x != x3)
+			{
 				e2 += dy2;
-				while (e2 >= dx2) {
+				while (e2 >= dx2)
+				{
 					e2 -= dx2;
-					if (changed2) t2xp = signx2;
-					else          goto next4;
+					if (changed2)
+						t2xp = signx2;
+					else
+						goto next4;
 				}
-				if (changed2)     break;
-				else              t2x += signx2;
+				if (changed2)
+					break;
+				else
+					t2x += signx2;
 			}
 		next4:
 
-			if (minx > t1x) minx = t1x; if (minx > t2x) minx = t2x;
-			if (maxx < t1x) maxx = t1x; if (maxx < t2x) maxx = t2x;
+			if (minx > t1x)
+				minx = t1x;
+			if (minx > t2x)
+				minx = t2x;
+			if (maxx < t1x)
+				maxx = t1x;
+			if (maxx < t2x)
+				maxx = t2x;
 			drawline(minx, maxx, y);
-			if (!changed1) t1x += signx1;
+			if (!changed1)
+				t1x += signx1;
 			t1x += t1xp;
-			if (!changed2) t2x += signx2;
+			if (!changed2)
+				t2x += signx2;
 			t2x += t2xp;
 			y += 1;
-			if (y > y3) return;
+			if (y > y3)
+				return;
 		}
 	}
-
-
 
 protected:
 	int m_nScreenWidth;
@@ -1260,10 +1436,10 @@ protected:
 	CHAR_INFO *m_bufScreen[2];
 	int m_nCurrentBuffer = 0;
 	std::wstring m_sAppName;
-	bool m_keyOldState[512] = { 0 };
-	bool m_keyNewState[512] = { 0 };
-	bool m_mouseOldState[5] = { 0 };
-	bool m_mouseNewState[5] = { 0 };
+	bool m_keyOldState[512] = {0};
+	bool m_keyNewState[512] = {0};
+	bool m_mouseOldState[5] = {0};
+	bool m_mouseNewState[5] = {0};
 	bool m_bConsoleInFocus = true;
 	bool m_bEnableSound = false;
 	static std::atomic<bool> m_bAtomActive;
@@ -1271,19 +1447,17 @@ protected:
 	static std::mutex m_muxGame;
 
 private:
-	SDL_Window* m_window;
-	SDL_Renderer* m_render;
+	SDL_Window *m_window;
+	SDL_Renderer *m_render;
 	SDL_Texture *m_screen;
-	SDL_Texture* m_fontFile;
+	SDL_Texture *m_fontFile;
 
 protected: // Audio Engine =====================================================================
-
 	class olcAudioSample
 	{
 	public:
 		olcAudioSample()
 		{
-
 		}
 
 		olcAudioSample(std::string sWavFile, olcConsoleGameEngine &cge)
@@ -1291,16 +1465,20 @@ protected: // Audio Engine =====================================================
 			uint8_t *wavData;
 			SDL_AudioSpec fileSpec;
 			uint32_t streamLen = 0;
-			if (!SDL_LoadWAV(sWavFile.c_str(), &fileSpec, (uint8_t **)&wavData, &streamLen)) {
-				std::cout << "Couldn't load audio file!\n" << SDL_GetError() << '\n';
+			if (!SDL_LoadWAV(sWavFile.c_str(), &fileSpec, (uint8_t **)&wavData, &streamLen))
+			{
+				std::cout << "Couldn't load audio file!\n"
+						  << SDL_GetError() << '\n';
 				bSampleValid = false;
 				return;
 			}
 
 			SDL_AudioCVT cvt;
 			if (!SDL_BuildAudioCVT(&cvt, fileSpec.format, fileSpec.channels, fileSpec.freq,
-				cge.sampleSpec.format, cge.sampleSpec.channels, cge.sampleSpec.freq)) {
-				std::cout << "Failed to build cvt!\n" << SDL_GetError() << '\n';
+								   cge.sampleSpec.format, cge.sampleSpec.channels, cge.sampleSpec.freq))
+			{
+				std::cout << "Failed to build cvt!\n"
+						  << SDL_GetError() << '\n';
 				bSampleValid = false;
 				return;
 			}
@@ -1309,8 +1487,10 @@ protected: // Audio Engine =====================================================
 			memcpy(cvt.buf, wavData, streamLen);
 			free(cvt.buf);
 			SDL_FreeWAV((uint8_t *)wavData);
-			if (SDL_ConvertAudio(&cvt) == -1) {
-				std::cout << "Failed to convert audio!\n" << SDL_GetError() << '\n';
+			if (SDL_ConvertAudio(&cvt) == -1)
+			{
+				std::cout << "Failed to convert audio!\n"
+						  << SDL_GetError() << '\n';
 				bSampleValid = false;
 				return;
 			}
@@ -1319,7 +1499,8 @@ protected: // Audio Engine =====================================================
 			bSampleValid = true;
 		}
 
-		~olcAudioSample() {
+		~olcAudioSample()
+		{
 			SDL_FreeWAV((uint8_t *)fSample);
 		}
 
@@ -1373,12 +1554,11 @@ protected: // Audio Engine =====================================================
 
 	void StopSample(int id)
 	{
-
 	}
 
 	// The audio system uses by default a specific wave format
 	bool CreateAudio(unsigned int nSampleRate = 44100, unsigned int nChannels = 1,
-		unsigned int nBlocks = 8, unsigned int nBlockSamples = 512)
+					 unsigned int nBlocks = 8, unsigned int nBlockSamples = 512)
 	{
 		SDL_AudioSpec wanted;
 		SDL_zero(wanted);
@@ -1396,8 +1576,10 @@ protected: // Audio Engine =====================================================
 
 		deviceID = SDL_OpenAudioDevice(NULL, 0, &wanted, &spec, 0);
 
-		if (deviceID == 0) {
-			std::cout << "Failed to open audio device!\n" << SDL_GetError() << '\n';
+		if (deviceID == 0)
+		{
+			std::cout << "Failed to open audio device!\n"
+					  << SDL_GetError() << '\n';
 			return false;
 		}
 
@@ -1413,7 +1595,8 @@ protected: // Audio Engine =====================================================
 		return false;
 	}
 
-	static void forwardCallback(void *userdata, uint8_t *byteStream, int len) {
+	static void forwardCallback(void *userdata, uint8_t *byteStream, int len)
+	{
 		static_cast<olcConsoleGameEngine *>(userdata)->AudioThread(userdata, byteStream, len);
 	}
 
@@ -1507,7 +1690,8 @@ protected: // Audio Engine =====================================================
 		}
 
 		// If sounds have completed then remove them
-		listActiveSamples.remove_if([](const sCurrentlyPlayingSample &s) {return s.bFinished; });
+		listActiveSamples.remove_if([](const sCurrentlyPlayingSample &s)
+									{ return s.bFinished; });
 
 		// The users application might be generating sound, so grab that if it exists
 		fMixerSample += onUserSoundSample(nChannel, fGlobalTime, fTimeStep);
@@ -1520,7 +1704,7 @@ protected: // Audio Engine =====================================================
 	SDL_AudioDeviceID deviceID;
 	SDL_AudioSpec spec, sampleSpec;
 
-	std::atomic<float> m_fGlobalTime{ 0.0f };
+	std::atomic<float> m_fGlobalTime{0.0f};
 };
 
 std::atomic<bool> olcConsoleGameEngine::m_bAtomActive(false);
